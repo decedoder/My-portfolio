@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nafees Hamza – Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #059669;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --gray: #6b7280;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+      scroll-behavior: smooth;
+    }
+    
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--dark);
+      padding: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
+    }
+    
+    header {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    header p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .header-button {
+      background: white;
+      color: var(--primary);
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .header-button.outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .about {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    .about p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: var(--dark);
+      line-height: 1.8;
+    }
+    
+    .cv-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    }
+    
+    .cv-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.25);
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .project-content p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .tag {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .contact {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+    
+    .contact p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .social-links {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+    
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    #cv-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      overflow-y: auto;
+      z-index: 2000;
+    }
+    
+    #cv-modal .content {
+      background: white;
+      padding: 3rem;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 3rem auto;
+      color: var(--dark);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray);
+      background: none;
+      border: none;
+    }
+    
+    .cv-section {
+      margin-bottom: 2rem;
+    }
+    
+    .cv-section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .cv-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .cv-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .cv-item .date {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      header p {
+        font-size: 1.2rem;
+      }
+      
+      nav {
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .about, .contact {
+        padding: 2rem;
+      }
+      
+      #cv-modal .content {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+    <a onclick="document.getElementById('cv-modal').style.display='block'">CV</a>
+  </nav>
+
+  <header>
+    <h1>Nafees Hamza</h1>
+    <p>AI & ML Specialist • MCA Graduate • Web Developer • Educator</p>
+    <div class="header-buttons">
+      <a href="#portfolio" class="header-button">View My Work</a>
+      <a href="#contact" class="header-button outline">Contact Me</a>
+    </div>
+  </header>
+
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a passionate technologist and educator with expertise in Artificial Intelligence and Machine Learning. Holding an MCA degree and with hands-on experience teaching Mathematics, Science, and Computer Science, I bridge the gap between theoretical knowledge and practical application. My approach combines technical proficiency with creative problem-solving to develop impactful digital solutions.
+    </p>
+    <p>
+      I thrive in dynamic environments where I can apply my diverse skill set, share knowledge through teaching, and contribute to both institutional growth and student success. My goal is to create technology that makes a meaningful difference while fostering learning opportunities for others.
+    </p>
+    <button class="cv-button" onclick="document.getElementById('cv-modal').style.display='block'">View My CV</button>
+  </section>
+
+  <section id="portfolio">
+    <h2>My Work</h2>
+    <div class="portfolio-grid">
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="AI Recipe Generator">
+        <div class="project-content">
+          <h3>AI-Based Recipe Generator</h3>
+          <p>An intelligent system that suggests recipes based on available ingredients and provides detailed nutritional analysis.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Nutrition API</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Image Classifier AI">
+        <div class="project-content">
+          <h3>Image Classifier AI</h3>
+          <p>A Convolutional Neural Network model built with TensorFlow/Keras for accurate image classification across multiple categories.</p>
+          <div class="project-tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="College Festival Website">
+        <div class="project-content">
+          <h3>College Festival Management</h3>
+          <p>Comprehensive system for managing college fest registrations, event schedules, participant tracking, and announcements.</p>
+          <div class="project-tags">
+            <span class="tag">Web Development</span>
+            <span class="tag">Database</span>
+            <span class="tag">PHP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Business Website">
+        <div class="project-content">
+          <h3>Anjum & Bros. Business Site</h3>
+          <p>Responsive e-commerce website for a retail business offering eyewear, electronics, repair services, and home décor.</p>
+          <div class="project-tags">
+            <span class="tag">E-commerce</span>
+            <span class="tag">Responsive Design</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Web Apps">
+        <div class="project-content">
+          <h3>Utility Web Applications</h3>
+          <p>Collection of productivity tools including To-Do List, Notes App, Quiz App, and Calculator built with modern web technologies.</p>
+          <div class="project-tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Web Apps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Portfolio Website">
+        <div class="project-content">
+          <h3>Portfolio Website</h3>
+          <p>Interactive personal portfolio showcasing professional journey, projects, skills, and contact information.</p>
+          <div class="project-tags">
+            <span class="tag">Web Design</span>
+            <span class="tag">Portfolio</span>
+            <span class="tag">Responsive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="cv-modal">
+    <div class="content">
+      <button class="close-btn" onclick="document.getElementById('cv-modal').style.display='none'">&times;</button>
+      <h2>Academic Curriculum Vitae</h2>
+      
+      <div class="cv-section">
+        <h3>Personal Information</h3>
+        <div class="cv-item">
+          <p><strong>Full Name:</strong> Nafees Hamza</p>
+          <p><strong>Address:</strong> Barapathar (Mawbah) - 793002</p>
+          <p><strong>Phone:</strong> +91 9089451301</p>
+          <p><strong>Email:</strong> sanajifedaes@gmail.com</p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nafees-hamza-68511a30b" target="_blank">linkedin.com/in/nafees-hamza</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/decedoder" target="_blank">github.com/decedoder</a></p>
+          <p><strong>Portfolio:</strong> <a href="https://nafees-hamza.vercel.app" target="_blank">nafees-hamza.vercel.app</a></p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Professional Summary</h3>
+        <div class="cv-item">
+          <p>MCA graduate specializing in AI/ML with practical teaching experience in Computer Science, Mathematics, and Science. Proven ability to develop innovative technical solutions while effectively communicating complex concepts to diverse audiences. Combines technical expertise with educational insight to create impactful learning experiences and technological solutions.</p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Education</h3>
+        <div class="cv-item">
+          <h4>Master of Computer Applications (MCA)</h4>
+          <p class="date">Amity University Noida | 2023 - 2025</p>
+        </div>
+        <div class="cv-item">
+          <h4>Bachelor of Science in Computer Science</h4>
+          <p class="date">St. Edmund's College | 2020 - 2023</p>
+        </div>
+        <div class="cv-item">
+          <h4>Higher Secondary Education</h4>
+          <p class="date">Gorkha Pathshala HSS | 2018 - 2020</p>
+        </div>
+        <div class="cv-item">
+          <h4>Secondary Education</h4>
+          <p class="date">Sunrise Academy Secondary School</p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Professional Experience</h3>
+        <div class="cv-item">
+          <h4>Associate Teacher</h4>
+          <p class="date">Sunrise Academy | Aug 2024 - May 2025</p>
+          <p>Taught Mathematics, Science, and Computer Science to secondary students, developing curriculum and implementing interactive learning methodologies.</p>
+        </div>
+        <div class="cv-item">
+          <h4>Social Media Intern</h4>
+          <p class="date">Kshitiksha Foundation | Aug 2024 - Sep 2024</p>
+          <p>Managed social media presence, created content, and developed engagement strategies for educational initiatives.</p>
+        </div>
+        <div class="cv-item">
+          <h4>Follow-Up Intern</h4>
+          <p class="date">St. Anthony's College | May–Aug 2024</p>
+          <p>Coordinated student follow-up programs and academic support initiatives.</p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Technical Skills</h3>
+        <div class="cv-item">
+          <p><strong>Programming:</strong> Python, Java, C/C++, JavaScript</p>
+          <p><strong>Web Development:</strong> HTML, CSS, PHP, MySQL, MongoDB</p>
+          <p><strong>AI/ML:</strong> TensorFlow, Keras, Scikit-learn</p>
+          <p><strong>Tools:</strong> Git, Linux, VS Code</p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Projects</h3>
+        <div class="cv-item">
+          <h4>AI-Based Recipe Generator with Nutrition</h4>
+          <p>Machine learning system that suggests recipes based on ingredient availability and calculates nutritional values.</p>
+        </div>
+        <div class="cv-item">
+          <h4>Image Classifier AI (CNN)</h4>
+          <p>Convolutional Neural Network model for image classification using TensorFlow/Keras.</p>
+        </div>
+        <div class="cv-item">
+          <h4>College Festival Management System</h4>
+          <p>Web-based platform for managing college fest registrations, schedules, and communications.</p>
+        </div>
+      </div>
+      
+      <div class="cv-section">
+        <h3>Additional Information</h3>
+        <div class="cv-item">
+          <p><strong>Languages:</strong> English (Fluent), Hindi (Fluent), Urdu (Fluent)</p>
+          <p><strong>Certifications:</strong> 40+ certifications across AI/ML, Web Development, and Computer Science domains</p>
+          <p><strong>Interests:</strong> Educational Technology, AI Ethics, Open Source Contribution</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h2>Get In Touch</h2>
+    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your team.</p>
+    
+    <div class="contact-info">
+      <p><i class="fas fa-envelope"></i> sanajifedaes@gmail.com</p>
+      <p><i class="fas fa-phone"></i> +91 9089451301</p>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/nafees-hamza-68511a30b" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/decedoder" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://wa.me/919089451301" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/nafees_hamza_?igsh=MWUxcnhlNW1ydnRwaA%3D%3D&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1AdDRC7pCx/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nafees Hamza. All rights reserved.</p>
+    <p>Designed and built with ❤️ by Nafees Hamza</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if(this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Close modal when clicking outside content
+    document.getElementById('cv-modal').addEventListener('click', function(e) {
+      if(e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
